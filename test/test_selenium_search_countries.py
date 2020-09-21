@@ -7,7 +7,11 @@ from webdriver_manager.chrome import ChromeDriverManager
 class SeleniumTest1(unittest.TestCase):
     
     def setUp(self):
-        self.driver = webdriver.Chrome("/Users/AloniD/Develop/selenium-python-headless/chrome-drivers/mac/chromedriver")
+        browser_options = webdriver.ChromeOptions()
+        # enable the argument below to run the test cases as headless using chrome driver
+        #browser_options.add_argument('headless')
+
+        self.driver = webdriver.Chrome("/Users/AloniD/Develop/selenium-python-headless/chrome-drivers/mac/chromedriver", options=browser_options)
 
     def test_open_bing_search(self):
         driver = self.driver
