@@ -16,29 +16,62 @@ class SeleniumTest1(unittest.TestCase):
         time.sleep(2)
         driver.close()
 
-    def test_search_panama_in_bing(self):
+    def test_search_panama_in_bing_and_wikipedia(self):
+        # step #1: Going to bing
         driver = self.driver
         driver.maximize_window()
         driver.get("https://www.bing.com/")
         time.sleep(2)
-        elem = driver.find_element_by_id("sb_form_q")
-        elem.send_keys("panama")
-        elem.send_keys(Keys.RETURN)
+
+        # step #2: Searching for country
+        bing_search = driver.find_element_by_id("sb_form_q")
+        bing_search.send_keys("panama wikipedia")
+        bing_search.send_keys(Keys.RETURN)
         time.sleep(2)
-        #driver.set_page_load_timeout(10)
+
+        # step #3: Iterate through search results - get first item only
+        # and go to wiki page
+        bing_results = driver.find_element_by_id("b_results")
+        bing_wiki_result = bing_results.find_elements_by_tag_name("li")[0]
+        bing_wiki_result = bing_wiki_result.find_elements_by_tag_name("a")[0]
+        bing_wiki_result.click()
+        time.sleep(2)
+
+        # step #4: getting wiki page description
+        wiki_header = driver.find_elements_by_tag_name("h1")[0].text
         driver.close()
 
-    def test_search_israel_in_bing(self):
+        # assertions:
+        assert wiki_header == "Panama", "This is not the wiki page about Panama. Value received was: %s" % wiki_header
+
+    
+    def test_search_israel_in_bing_and_wikipedia(self):
+        # step #1: Going to bing
         driver = self.driver
         driver.maximize_window()
         driver.get("https://www.bing.com/")
         time.sleep(2)
-        elem = driver.find_element_by_id("sb_form_q")
-        elem.send_keys("israel")
-        elem.send_keys(Keys.RETURN)
+
+        # step #2: Searching for country
+        bing_search = driver.find_element_by_id("sb_form_q")
+        bing_search.send_keys("israel wikipedia")
+        bing_search.send_keys(Keys.RETURN)
         time.sleep(2)
-        #driver.set_page_load_timeout(10)
+
+        # step #3: Iterate through search results - get first item only
+        # and go to wiki page
+        bing_results = driver.find_element_by_id("b_results")
+        bing_wiki_result = bing_results.find_elements_by_tag_name("li")[0]
+        bing_wiki_result = bing_wiki_result.find_elements_by_tag_name("a")[0]
+        bing_wiki_result.click()
+        time.sleep(2)
+
+        # step #4: getting wiki page description
+        wiki_header = driver.find_elements_by_tag_name("h1")[0].text
         driver.close()
+
+        # assertions:
+        assert wiki_header == "Israel", "This is not the wiki page about Israel. Value received was: %s" % wiki_header
 
 if __name__ == '__main__':
     unittest.main()
