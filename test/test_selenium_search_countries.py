@@ -11,7 +11,10 @@ class SeleniumTest1(unittest.TestCase):
         # enable the argument below to run the test cases as headless using chrome driver
         #browser_options.add_argument('headless')
 
-        self.driver = webdriver.Chrome("/Users/AloniD/Develop/selenium-python-headless/chrome-drivers/mac/chromedriver", options=browser_options)
+        # self.driver = webdriver.Chrome("/Users/AloniD/Develop/selenium-python-headless/chrome-drivers/mac/chromedriver", options=browser_options)
+
+        # linux path
+        self.driver = webdriver.Chrome("/usr/bin/chromedriver", options=browser_options)
 
     def test_open_bing_search(self):
         driver = self.driver
