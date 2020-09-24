@@ -10,6 +10,7 @@ class SeleniumTest1(unittest.TestCase):
         browser_options = webdriver.ChromeOptions()
         # enable the argument below to run the test cases as headless using chrome driver
         browser_options.add_argument('headless')
+        browser_options.add_argument('no-sandbox')
 
         # self.driver = webdriver.Chrome("/Users/AloniD/Develop/selenium-python-headless/chrome-drivers/mac/chromedriver", options=browser_options)
 
