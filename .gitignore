@@ -1,0 +1,5 @@
+myenv/
+venv/
+chrome-drivers/
+.vscode/
+test/__pycache__/
