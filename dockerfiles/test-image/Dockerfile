@@ -1,4 +1,5 @@
 FROM ubuntu:latest
+ARG DEBIAN_FRONTEND=noninteractive
 #MAINTAINER dannel
 # @MAINTAINER has been deprecated
 
@@ -19,7 +20,6 @@ RUN curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-ke
 
 ## 3. Setting up chrome driver
 RUN wget https://chromedriver.storage.googleapis.com/2.41/chromedriver_linux64.zip && \
-    mv chromedriver_linux64.zip && \
     unzip chromedriver_linux64.zip && \
     mv chromedriver /usr/bin/chromedriver && \
     chmod +x /usr/bin/chromedriver && \
