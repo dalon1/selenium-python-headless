@@ -1,5 +1,4 @@
 FROM selenium/standalone-chrome:latest
-MAINTAINER dannel
 USER root
 WORKDIR /qa-app
 COPY requirements.txt .
